@@ -1,19 +1,20 @@
-export function getPosts(url, callMeBack) { 
-    
+export default function getPosts(url, callMeBack) {
     fetch(url)
-    .then(response => response.json())
+        .then(response => response.json())
         .then(data => {
-        //     let contents = [];
-        //     data.content.forEach((content) => { content.push(new GobiWomen(content.name,content.title1, content.img1,content.title2, content.img2,content.title3, content.img3,content.title4,content.img4 ,0))})
-        // callMeBack(contents);
-        console.log(data)
-        console.log("zaachigutsaa")
-    })
+            let contents = [];
+            data.content.forEach((content) => {
+                contents.push(new GobiWomen(content.name, content.title1, content.img1, content.title2, content.img2, content.title3, content.img3, content.title4, content.img4, 0))
+            })
+            callMeBack(contents);
+            console.log(data.content)
+        })
 }
 
-export class GobiWomen { 
+export class GobiWomen {
 
-    constructor(_name,_title1, _img1,_title2, _img2,_title3, _img3,_title4, _img4) { 
+    constructor(_name, _title1, _img1, _title2, _img2, _title3, _img3, _title4, _img4) {
+        this.name = _name;
         this.title1 = _title1;
         this.title2 = _title2;
         this.title3 = _title3;
@@ -25,9 +26,9 @@ export class GobiWomen {
     }
 
     Create() {
-        
+
         return `
-        <h3>${this.name}/h3>
+        <h3>${this.name}</h3>
 			<div class="grid-container">
 				<a href=""><img src="${this.img1}" alt=""></a>
 				<a href=""><img src="${this.img2}" alt=""></a>
@@ -41,6 +42,6 @@ export class GobiWomen {
 				<a href="">${this.title4}</a>
 			</div>`
 
-     }
-    
+    }
+
 }
